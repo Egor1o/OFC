@@ -2,31 +2,43 @@ import React, { useEffect, useState } from 'react';
 import '../styles/PersonCard.css';
 import { useStore } from '@nanostores/react';
 import { $language } from '../stores/languageStore.ts';
-import { $data, setNewData } from '../stores/pageDataStorage.ts';
-import {LoaderCircle} from "lucide-react"
+import { setNewData } from '../stores/pageDataStorage.ts';
+import { LoaderCircle } from "lucide-react";
 
 type Props = {
-  children: React.ReactNode
-  page: string
+  children: React.ReactNode;
+  page: string;
 }
 
-const App: React.FC = ({children, page}) => {
+const App: React.FC<Props> = ({ children, page }) => {
+  const [isFetching, setIsFetching] = useState(true);
+  const [fetchedData, setFetchedData] = useState<any[]>([]);
 
-  const [isFetching, setIsFetching] = useState(false)
-
-  const language = useStore($language)
-  const data = useStore($data)
-  const callBack = () => {
-    setIsFetching(false)
-  }
+  const language = useStore($language);
+  const callBack = (data) => {
+    setIsFetching(false);
+    setFetchedData(data);
+  };
 
   useEffect(() => {
     setIsFetching(true);
-    //mock
     setTimeout(() => {
       setNewData(page, language, callBack);
-    }, 5000);
-  }, [language]);
+    }, 500);
+  }, [language, page]);
+
+  // useEffect mandatory on the rendering stage since astro is static otherwise.
+  // Other solutions are welcomed ...
+  useEffect(() => {
+    if (fetchedData.length > 0) {
+      fetchedData.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          element.innerText = item.description;
+        }
+      });
+    }
+  }, [fetchedData]);
 
   return (
     <div
@@ -38,10 +50,14 @@ const App: React.FC = ({children, page}) => {
         textAlign: 'center',
       }}
     >
-      {!isFetching ? children : <LoaderCircle/>}
-
+      {isFetching ? (
+        <LoaderCircle className="transition:rot" />
+      ) : (
+        <>
+          {children}
+        </>
+      )}
     </div>
-
   );
 };
 
