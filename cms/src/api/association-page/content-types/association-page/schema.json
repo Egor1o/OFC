@@ -1,0 +1,58 @@
+{
+  "kind": "singleType",
+  "collectionName": "association_pages",
+  "info": {
+    "singularName": "association-page",
+    "pluralName": "association-pages",
+    "displayName": "Association Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "associationIntroText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "activesSectionTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "photoOfBoard": {
+      "allowedTypes": ["images"],
+      "type": "media",
+      "multiple": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "contactUsText": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
+    },
+    "contact_information": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contact-information.contact-information"
+    }
+  }
+}

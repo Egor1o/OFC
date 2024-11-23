@@ -1,0 +1,54 @@
+---
+import Main from '../layouts/Main.astro';
+import PersonCarouselComponent from '../components/PersonCarouselComponent';
+
+const coachSlides = Array.from({ length: 5 }, (_, index) => ({
+  name: `Coach ${index}`,
+  description:
+    'Master Kenji is a seasoned martial arts coach with over 20 years of experience, specializing in both traditional and modern techniques. His teaching combines discipline, mindfulness, and strategic thinking, focusing on developing not just physical strength but mental resilience in his students.',
+  image: '/public/8240494.jpg'
+}));
+
+// import fetchApi from '../lib/strapi';
+// import type { Coach, TrainingsPage, MartialArtInformation } from 'src/types/types';
+
+// const trainingsPage = await fetchApi<TrainingsPage>({
+//   endpoint: 'trainings-page',
+//   wrappedByKey: 'data'
+// });
+
+// const coaches =
+//   (await fetchApi<Coach[]>({
+//     endpoint: 'coaches',
+//     wrappedByKey: 'data'
+//   })) ?? [];
+
+// const martialArts =
+//   (await fetchApi<MartialArtInformation[]>({
+//     endpoint: 'martial-art-informations',
+//     wrappedByKey: 'data'
+//   })) ?? [];
+---
+
+<Main>
+  <p>This is the Trainings page</p>
+  <PersonCarouselComponent client:only='react' personSlides={coachSlides} />
+  <div class='card bg-red w-80 shadow-xl m-10'>
+    <figure class='px-10 pt-10'>
+      <img
+        src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
+        alt='Shoes'
+        class='rounded-xl'
+      />
+    </figure>
+    <div class='card-body items-center text-center'>
+      <h2 class='card-title'>Judo</h2>
+      <p>
+        Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
+        Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
+        opponent to the ground, all while staying calm and looking cool.
+      </p>
+      <div class='card-actions'></div>
+    </div>
+  </div>
+</Main>

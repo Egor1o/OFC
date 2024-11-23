@@ -24,6 +24,7 @@ const LanguageDropDown: React.FC = () => {
             hover:text-red-600
           '
         onChange={handleLanguageChange}
+        aria-label='language selector'
       >
         {languages.map((name, index) => (
           <option key={index} value={name} className='bg-transparent'>
