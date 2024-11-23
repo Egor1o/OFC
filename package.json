@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "tsc": "cd frontend && npm run tsc && cd ../strapi && npm run tsc && cd .."
+    "tsc": "cd frontend && npm run tsc && cd ../cms && npm run tsc && cd .."
   },
   "devDependencies": {
     "prettier": "^3.3.3",

@@ -1,3 +1,6 @@
+const STRAPI_URL = 'https://informed-idea-cad3b2a8dd.strapiapp.com';
+const STRAPI_URL_LOCAL = 'http://localhost:1337/admin';
+
 interface Props {
   endpoint: string;
   query?: Record<string, string>;
@@ -18,7 +21,7 @@ export default async function fetchApi<T>({ endpoint, query, wrappedByKey, wrapp
     endpoint = endpoint.slice(1);
   }
 
-  const url = new URL(`${import.meta.env.STRAPI_URL}/api/${endpoint}`);
+  const url = new URL(`${STRAPI_URL}/api/${endpoint}`);
 
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
