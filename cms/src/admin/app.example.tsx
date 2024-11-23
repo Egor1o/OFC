@@ -29,9 +29,9 @@ export default {
       // 'vi',
       // 'zh-Hans',
       // 'zh',
-    ]
+    ],
   },
   bootstrap(app: StrapiApp) {
     console.log(app);
-  }
+  },
 };

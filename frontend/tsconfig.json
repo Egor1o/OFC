@@ -13,7 +13,7 @@
     "noImplicitAny": true,
     "baseUrl": "./",
     "paths": {
-      "@strapi-types/*": ["../strapi/types/generated/*"]
+      "@strapi-types/*": ["../cms/types/generated/*"]
     }
   }
 }
