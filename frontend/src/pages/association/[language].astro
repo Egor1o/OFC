@@ -1,0 +1,34 @@
+---
+import Main from '../../layouts/Main.astro';
+import BoardTable from '../../components/BoardTable';
+
+import fetchApi from '../../lib/strapi';
+import type { AssociationActive, AssociationPage } from 'src/types/types';
+
+export async function getStaticPaths() {
+  return [
+    { params: { language: 'finnish' } },
+    { params: { language: 'english' } },
+  ];
+}
+
+
+const { language } = Astro.params
+console.log('language', language)
+
+const associationPage = await fetchApi<AssociationPage>({
+  endpoint: 'association-page',
+  wrappedByKey: 'data'
+});
+
+const associationActive =
+  (await fetchApi<AssociationActive[]>({
+    endpoint: 'association-actives',
+    wrappedByKey: 'data'
+  })) ?? [];
+
+---
+
+<Main>
+  <BoardTable boardMembers={associationActive} client:only="react"/>
+</Main>
