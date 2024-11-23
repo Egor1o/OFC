@@ -1,15 +1,84 @@
 ---
 import Main from '../layouts/Main.astro';
-
-// import fetchApi from '../lib/strapi';
-// import type { BecomeAMemberPage } from 'src/types/types';
-
-// const becomeAMemberPage = await fetchApi<BecomeAMemberPage>({
-//   endpoint: 'become-a-member-page',
-//   wrappedByKey: 'data'
-// });
+import Modal from '../components/Modal';
 ---
 
 <Main>
-  <p>This is the become a member page</p>
+  <div class="flex flex-col text-center p-10 text-white gap-10 w-3/4 justify-center self-center">
+
+    <div class="flex flex-col gap-10 mb-20">
+      <h1 class="text-xl">
+        Become a member!
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue, lorem ac convallis vulputate,
+        nibh arcu consequat nunc,
+        sit amet luctus tellus velit sit amet nulla. Morbi gravida mauris accumsan egestas rutrum.
+        Donec ac augue viverra, suscipit justo id, efficitur turpis. Donec risus erat, efficitur non commodo eget, consequat quis
+        est. Donec volutpat erat ut felis tincidunt posuere vulputate vel nisi.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-10 mb-20">
+      <h2 class="text-xl">
+        Terms of Participation | 2014-02-28 | Otaniemi Fight Club
+      </h2>
+      <p>
+        §1 Everyone holds full responsibility of his or her actions and their consequences and his or her safety and
+        insurances. Otaniemi Fight Club, its Board of Directors and the organizers and drill instructors of its events or
+        trainings cannot be held responsible for the actions and deeds of participants nor outsiders, nor their safety or
+        health even when following given instructions.
+      </p>
+      <p>
+        §2 The organizers and or instructors and training partners must be immediately informed of anything that might
+        affect the event or safety in it (such things include for example asthma, a weakened joint or damaged equipment).
+        Participation while sick or under the influence of drugs is prohibited. One must also leave enough time between
+        apparent recovery and next participation (At least half of the duration of the sickness).
+      </p>
+        <p>
+        §3 A positive and friendly atmosphere must always be maintained and safety must be priority number one. Always
+        prior to exercise or sparring with a partner the rules and level of contact must be clearly agreed upon. Always
+        immediately prior to each continuous exercise or sparring period the willingness and readiness of everyone involved
+        must be ensured. Always when someone behaves abnormally the current activity must be stopped immediately.
+      </p>
+      <p>
+        §4 When a partner tries to express willingness to submit for example by tapping or by speech all offensive actions
+        must be stopped immediately. Common sense must always be used especially when applying submission holds and
+        the training partner must always be protected from injury irrespective of whether he or she is about to submit. The
+        more inexperienced the partner the more one must additionally focus on protecting him or her from him or herself.
+      </p>
+      <p>
+        §5 Wearing jewelry, rings or any other items is prohibited while training except for certain protective equipment
+        which must be used according to the table below, especially while sparring. It is forbidden to take part in contact
+        training without the items listed as required, and the instructor and partner must be made aware of any missing
+        recommended items. Certain liberties may be taken with the table when doing specific and safe drills.
+
+      </p>
+
+      <p>
+      §6 One must always have short and rounded nails in trainings and personal hygiene must be maintained.
+      </p>
+
+      <p>
+      §7 Skin problems must be avoided. Attention must be given to each others’ skin, and the harmlessness of all
+      abnormal skin conditions must be affirmed prior to trainings.
+      </p>
+      <p>
+      §8 The organizers and instructors have the right to remove anyone who disrespects the rules or these terms or
+      behaves otherwise asocially. The Board has the right to permanently remove a member due to severe or repeated
+      offenses or unacceptable behaviour. If necessary, we will resort to the police and the judicial system.
+      </p>
+
+    </div>
+
+    <div class="flex flex-col gap-5 ">
+      <p>
+        By taking part of the training I confirm that I’ve read and understood the terms above, I accept them and
+        I consent to following them. I will also try my best in maintaining a safe and positive atmosphere and
+        treat the used facilities and material with respect and agree to report immediately if I perceive any
+        damage or see them being abused.
+      </p>
+    <Modal client:only='react' styles="pt-4 pb-4 pl-6 pr-6"/>
+    </div>
+  </div>
 </Main>
