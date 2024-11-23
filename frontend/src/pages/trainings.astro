@@ -8,6 +8,26 @@ const coachSlides = Array.from({ length: 5 }, (_, index) => ({
     'Master Kenji is a seasoned martial arts coach with over 20 years of experience, specializing in both traditional and modern techniques. His teaching combines discipline, mindfulness, and strategic thinking, focusing on developing not just physical strength but mental resilience in his students.',
   image: '/public/8240494.jpg'
 }));
+
+// import fetchApi from '../lib/strapi';
+// import type { Coach, TrainingsPage, MartialArtInformation } from 'src/types/types';
+
+// const trainingsPage = await fetchApi<TrainingsPage>({
+//   endpoint: 'trainings-page',
+//   wrappedByKey: 'data'
+// });
+
+// const coaches =
+//   (await fetchApi<Coach[]>({
+//     endpoint: 'coaches',
+//     wrappedByKey: 'data'
+//   })) ?? [];
+
+// const martialArts =
+//   (await fetchApi<MartialArtInformation[]>({
+//     endpoint: 'martial-art-informations',
+//     wrappedByKey: 'data'
+//   })) ?? [];
 ---
 
 <Main>

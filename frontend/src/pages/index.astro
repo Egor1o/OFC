@@ -4,7 +4,7 @@ import MediaCarousel from 'src/components/MediaCarousel';
 import PersonCarouselComponent from '../components/PersonCarouselComponent';
 import MarkdownArticle from 'src/components/MarkdownArticle';
 
-const markdown = `
+const EXAMPLE_MARKDOWN = `
 # Otaniemi Fight Club
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue, lorem ac convallis vulputate, nibh arcu consequat nunc, sit amet luctus tellus velit sit amet nulla. Morbi gravida mauris accumsan egestas rutrum. Donec ac augue viverra, suscipit justo id, efficitur turpis. Donec risus erat, efficitur non commodo eget, consequat quis est. Donec volutpat erat ut felis tincidunt posuere vulputate vel nisi.
@@ -12,27 +12,43 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue, lorem
 JOIN THE <a href="https://t.me/+zR_51AMzJUc1NmFk" target="_blank">TELEGRAM GROUP</a>
 `;
 
-// import fetchApi from '../lib/strapi';
-// import type { MemberComment } from 'src/types/types';
-// const memberComments =
-//   (await fetchApi<MemberComment[]>({
-//     endpoint: 'member-comments',
-//     wrappedByKey: 'data'
-//   })) ?? [];
-
-const memberCommentSlides = Array.from({ length: 5 }, (_, index) => ({
+const EXAMPLE_MEMBER_COMMENT_SLIDES = Array.from({ length: 5 }, (_, index) => ({
   name: `Person ${index}`,
   description:
     'Otaniemi Fight Club is an incredible place to train and grow in martial arts! The instructors are highly skilled, approachable, and passionate about helping everyone improve, regardless of experience level.',
   image: '/public/8240494.jpg'
 }));
+
+import fetchApi from '../lib/strapi';
+import type { HomePage, MemberComment } from 'src/types/types';
+
+const homePage = await fetchApi<HomePage>({
+  endpoint: 'home-page',
+  wrappedByKey: 'data'
+});
+
+const memberComments =
+  (await fetchApi<MemberComment[]>({
+    endpoint: 'member-comments',
+    wrappedByKey: 'data'
+  })) ?? [];
 ---
 
 <Main>
-  <MarkdownArticle markdown={markdown} />
+  <!-- EXAMPLES OF USING STRAPI START -->
+  <p>{homePage.introductionText}</p>
+  {
+    memberComments.map(comment => (
+      <p>
+        {comment.name}: {comment.comment}
+      </p>
+    ))
+  }
+  <!-- EXAMPLES OF USING STRAPI END -->
+  <MarkdownArticle markdown={EXAMPLE_MARKDOWN} />
   <MediaCarousel client:only='react' />
   <hr />
   <h2>Comments from our members</h2>
-  <PersonCarouselComponent client:only='react' personSlides={memberCommentSlides} />
+  <PersonCarouselComponent client:only='react' personSlides={EXAMPLE_MEMBER_COMMENT_SLIDES} />
   <hr />
 </Main>
