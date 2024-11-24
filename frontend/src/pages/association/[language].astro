@@ -17,10 +17,12 @@ const { language } = Astro.params
 const associationPage = await fetchApi<AssociationPage>({
   endpoint: 'association-page',
   query: {
-    locale: language === "english" ? "en" : "fi"
+    locale: language === "english" ? "en" : "fi",
+    populate: "*"
   },
   wrappedByKey: 'data',
 });
+
 
 const associationActive =
   (await fetchApi<AssociationActive[]>({
@@ -28,12 +30,15 @@ const associationActive =
     wrappedByKey: 'data'
   })) ?? [];
 
-
-console.log(associationPage)
+const photo = associationPage.photoOfBoard.formats.small.url
 
 const intro = getHTMLfromMDX(associationPage.associationIntroText, {
   h1: 'font-bold text-3xl m-2',
   p: 'p-8',
+})
+
+const contactUs = getHTMLfromMDX(associationPage.contactUsText, {
+  h1: 'font-bold text-3xl m-2',
 })
 
 ---
@@ -42,9 +47,14 @@ const intro = getHTMLfromMDX(associationPage.associationIntroText, {
   <div class="flex self-center flex-col w-3/4">
     {intro}
   </div>
-  <h1 class="text-3xl font-bold">
+  <h1 class="text-3xl font-bold -mt-4">
     Board 2024
   </h1>
   <BoardTable boardMembers={associationActive} client:only="react"/>
-
+  <div class="flex w-full justify-center p-3">
+    <img src={photo} alt="Board" class="w-1/2"/>
+  </div>
+  <div class="flex self-center flex-col w-3/4 mb-20">
+    {contactUs}
+  </div>
 </Main>

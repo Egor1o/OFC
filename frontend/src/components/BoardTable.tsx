@@ -7,9 +7,8 @@ type Props =
 }
 
 const BoardTable: React.FC<Props> = (props) => {
-  console.log(props.boardMembers)
   return (
-    <div className="flex items-center justify-center mb-12">
+    <div className="flex items-center justify-center">
       <div className="grid grid-cols-2 gap-6 w-3/4">
         {props.boardMembers.map(elem => {
           return <div key={elem.name} className="flex justify-end">
