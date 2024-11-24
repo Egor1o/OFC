@@ -9,19 +9,19 @@ type Props =
 const BoardTable: React.FC<Props> = (props) => {
   console.log(props.boardMembers)
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mb-12">
       <div className="grid grid-cols-2 gap-6 w-3/4">
         {props.boardMembers.map(elem => {
-          return <div className="flex justify-end">
+          return <div key={elem.name} className="flex justify-end">
             <div className="flex justify-end">
             <CircleUser size={90} className="w-full mr-8"/>
             </div>
             <div
-              className="w-1/2 flex flex-col justify-around">
+              className="w-1/2 flex flex-col justify-center">
               <div className="flex w-full text-start">
                 <p className="font-bold text-white text-sm md:text-lg">{elem.name}</p>
               </div>
-              <p className="text-white flex justify-start">{elem.role}</p>
+              <p className="text-white text-sm flex justify-start">{elem.role}</p>
             </div>
           </div>
         })}

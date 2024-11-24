@@ -1,9 +1,9 @@
 ---
 import Main from '../../layouts/Main.astro';
 import BoardTable from '../../components/BoardTable';
-
 import fetchApi from '../../lib/strapi';
 import type { AssociationActive, AssociationPage } from 'src/types/types';
+import { getHTMLfromMDX } from '../../common/common';
 
 export async function getStaticPaths() {
   return [
@@ -12,13 +12,14 @@ export async function getStaticPaths() {
   ];
 }
 
-
 const { language } = Astro.params
-console.log('language', language)
 
 const associationPage = await fetchApi<AssociationPage>({
   endpoint: 'association-page',
-  wrappedByKey: 'data'
+  query: {
+    locale: language === "english" ? "en" : "fi"
+  },
+  wrappedByKey: 'data',
 });
 
 const associationActive =
@@ -27,8 +28,23 @@ const associationActive =
     wrappedByKey: 'data'
   })) ?? [];
 
+
+console.log(associationPage)
+
+const intro = getHTMLfromMDX(associationPage.associationIntroText, {
+  h1: 'font-bold text-3xl m-2',
+  p: 'p-8',
+})
+
 ---
 
 <Main>
+  <div class="flex self-center flex-col w-3/4">
+    {intro}
+  </div>
+  <h1 class="text-3xl font-bold">
+    Board 2024
+  </h1>
   <BoardTable boardMembers={associationActive} client:only="react"/>
+
 </Main>

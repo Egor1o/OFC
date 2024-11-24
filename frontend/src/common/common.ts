@@ -6,6 +6,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeAddClasses from 'rehype-add-classes';
 import rehypeStringify from 'rehype-stringify';
 
+//styles can be added in the manner {div : "flex flex-col w-full h-full"}
 const getHTMLfromMDX = async (mdx: string, styles: Object) => {
   return await unified()
     .use(remarkParse)
