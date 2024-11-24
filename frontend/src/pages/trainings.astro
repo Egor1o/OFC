@@ -31,24 +31,109 @@ const coachSlides = Array.from({ length: 5 }, (_, index) => ({
 ---
 
 <Main>
-  <p>This is the Trainings page</p>
-  <PersonCarouselComponent client:only='react' personSlides={coachSlides} />
-  <div class='card bg-red w-80 shadow-xl m-10'>
-    <figure class='px-10 pt-10'>
-      <img
-        src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
-        alt='Shoes'
-        class='rounded-xl'
-      />
-    </figure>
-    <div class='card-body items-center text-center'>
-      <h2 class='card-title'>Judo</h2>
-      <p>
-        Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
-        Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
-        opponent to the ground, all while staying calm and looking cool.
-      </p>
-      <div class='card-actions'></div>
-    </div>
+  <div class="flex flex-col md:flex-row p-5">
+  <div class="text-center">
+    <h2 class="text-4xl p-10">Trainings</h2>
+    <h2 class="text-2xl">When?</h2>
+    <p class="">
+      Mondays, Tuesdays, Wednesdays and Fridays, sometimes Saturdays. Usually 19-21, exact time on the polls.
+    </p>
+    <h2 class="text-2xl pt-5">Where?</h2>
+    <p class="">
+      Jämeräntaival 5A Tatami Hall. The code to enter the building is in the group description. The code to enter the tatami hall is sent separately for each training in the General chat.    </p>    
+    <h2 class="text-2xl pt-5">How to sign up?</h2>
+    <p class="">
+      Keep an eye out in Telegram for training information and vote to attend to sign up!
+    </p>
   </div>
+  <div>
+    <img class="p-10" src="https://www.ayy.fi/sites/g/files/flghsv231/files/styles/slider_large/public/2019-05/tatamisali_4.jpg?itok=RioGRVlE">
+  </div>
+  </div>
+  <div class="h-2 bg-[#E9DEDE]"></div>
+  </div>
+  <div class="text-center">
+    <h2 class="text-4xl">Our coaches</h2>
+    <p class="mb-0 m-12">
+      Our coaches are the best    </p>
+  </div>
+  <PersonCarouselComponent client:only='react' personSlides={coachSlides} />
+   <div class="h-2 bg-[#E9DEDE]"></div>
+    <div class="text-center">
+      <h2 class="text-4xl">Basics about martial arts</h2>
+      <p class=" mb-0 m-12">
+        Martial arts are systems of combat practices used for self-defense, physical fitness, and competition.
+        They include techniques like striking, grappling, and throws, with popular styles such as Karate, Judo, Taekwondo, and Muay Thai.
+        Beyond physical skills, martial arts teach mental focus, discipline, and respect.
+        Many styles also incorporate philosophical elements, encouraging personal growth and self-control while promoting overall well-being.
+      </p>
+    </div>
+    <div class = "flex flex-col 2xl:flex-row">
+      <div class='card border-l-4 border-b-4 border-[#E9DEDE] bg-gradient-to-r from-red to-[#E9DEDE] m-10 h-96 shadow-xl flex flex-col md:flex-row justify-center items-center max-w-[778px]'>
+        <figure class='pt-5 md:p-5'>
+          <img
+            src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
+            class='rounded-xl max-w-44 md:max-w-96'
+          />
+        </figure>
+        <div class="max-w-80 md:max-w-[306px] text-black pl-2">
+          <h2 class="text-3xl pb-2">Judo</h2>
+          <p>
+            Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
+            Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
+            opponent to the ground, all while staying calm and looking cool.
+          </p>
+        </div>
+      </div>
+      <div class='card border-l-4 border-b-4 border-[#E9DEDE] bg-gradient-to-r from-red to-[#E9DEDE] m-10 h-96 shadow-xl flex flex-col md:flex-row justify-center items-center max-w-[778px]'>
+        <figure class='pt-5 md:p-5'>
+          <img
+            src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
+            class='rounded-xl max-w-44 md:max-w-96'
+          />
+        </figure>
+        <div class="max-w-80 md:max-w-[306px] text-black pl-2">
+          <h2 class="text-3xl pb-2">Judo</h2>
+          <p>
+            Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
+            Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
+            opponent to the ground, all while staying calm and looking cool.
+          </p>
+        </div>
+      </div>
+      </div>
+  <div class = "flex flex-col 2xl:flex-row">
+    <div class='card border-l-4 border-b-4 border-[#E9DEDE] bg-gradient-to-r from-red to-[#E9DEDE] m-10 h-96 shadow-xl flex flex-col md:flex-row justify-center items-center max-w-[778px]'>
+      <figure class='pt-5 md:p-5'>
+        <img
+          src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
+          class='rounded-xl max-w-44 md:max-w-96'
+        />
+      </figure>
+      <div class="max-w-80 md:max-w-[306px] text-black pl-2">
+        <h2 class="text-3xl pb-2">Judo</h2>
+        <p>
+          Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
+          Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
+          opponent to the ground, all while staying calm and looking cool.
+        </p>
+      </div>
+    </div>
+    <div class='card border-l-4 border-b-4 border-[#E9DEDE] bg-gradient-to-r from-red to-[#E9DEDE] m-10 h-96 shadow-xl flex flex-col md:flex-row justify-center items-center max-w-[778px]'>
+      <figure class='pt-5 md:p-5'>
+        <img
+          src='https://www.ristikaksi.com/wp-content/uploads/2024/07/judo-olympialaisissa.jpg'
+          class='rounded-xl max-w-44 md:max-w-96'
+        />
+      </figure>
+      <div class="max-w-80 md:max-w-[306px] text-black pl-2">
+        <h2 class="text-3xl pb-2">Judo</h2>
+        <p>
+          Judo isn’t just about brute strength—it’s a smart, tactical art where you let your opponent do the work. Born in
+          Japan, it’s all about flipping, throwing, and grappling with ninja-like finesse. The goal? Toss or pin your
+          opponent to the ground, all while staying calm and looking cool.
+        </p>
+      </div>
+    </div>
+    </div>
 </Main>
