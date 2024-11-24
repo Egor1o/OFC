@@ -14,12 +14,12 @@ const NavBar: React.FC = () => {
     `${window.location.pathname === path ? 'text-red' : 'hover:underline decoration-2 hover:decoration-red'}`;
 
   return (
-    <div className='bg-white flex flex-row justify-between items-center w-full mb-5 pt-2 pb-2 text-lg text-black'>
+    <div className='bg-white flex flex-row justify-between items-center mb-5 pt-2 pb-2 text-lg text-black'>
       <a href='/'>
         <img className='scale-75' src='/ofcLogo.jpg' alt='ofc_logo' />
       </a>
       <nav>
-        <ol className='p-4 flex flex-row items-center'>
+        <ol className='p-4 flex flex-wrap items-center'>
           <li>
             <a href='/' className={`mr-4 ${linkStyling('/')}`}>
               Home
