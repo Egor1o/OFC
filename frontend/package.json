@@ -26,6 +26,10 @@
     "nanostores": "^0.11.3",
     "react-dom": "^18.3.1",
     "react-multi-carousel": "^2.8.5",
+    "rehype-add-classes": "^1.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-rehype": "^11.1.1",
+    "remark-toc": "^9.0.0",
     "typescript": "^5.6.2"
   },
   "devDependencies": {
