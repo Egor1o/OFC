@@ -24,11 +24,14 @@
       },
       "type": "richtext"
     },
-    "carouselImages": {
+    "carouselMedias": {
       "type": "media",
       "multiple": true,
       "required": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
       "pluginOptions": {
         "i18n": {
           "localized": false

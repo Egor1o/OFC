@@ -611,7 +611,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
-    carouselImages: Schema.Attribute.Media<'images', true> &
+    carouselMedias: Schema.Attribute.Media<'images' | 'videos', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
