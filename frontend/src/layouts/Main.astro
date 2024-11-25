@@ -1,6 +1,7 @@
 ---
 import Footer from 'src/components/navigation/Footer.tsx';
 import NavBar from 'src/components/navigation/NavBar';
+const url = Astro.url.href
 ---
 
 <html lang='en'>
@@ -15,8 +16,16 @@ import NavBar from 'src/components/navigation/NavBar';
   <body
     style='min-height: 100vh; display: flex; flex-direction: column; flex: 1; background-color: #262525; color:white;'
   >
-    <NavBar client:only='react' />
-    <main style='flex: 1; display: flex; flex-direction: column; gap: 50px; text-align: center;'>
+    <NavBar client:only='react' url={url}/>
+    <main
+      style="
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+      "
+    >
       <slot />
     </main>
     <Footer />
