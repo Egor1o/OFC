@@ -26,6 +26,7 @@ const LanguageDropDown: React.FC<Props> = ({url}) => {
 
   useEffect(() => {
     if(language !== abbreviate){
+      //comment this if starts bother
       setCorrectLanguage(url, abbreviate)
     }
   }, []);

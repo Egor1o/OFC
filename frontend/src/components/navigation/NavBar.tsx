@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import LanguageDropDown from './LanguageDropDown.tsx';
 import InstagramLink from './InstagramLink';
 import TelegramLink from './TelegramLink';
+import { useStore } from '@nanostores/react';
+import { $language } from '../../stores/languageStore.ts';
 
 type Props = {
   url: string
 }
 const NavBar: React.FC<Props> = ({url}) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const language = useStore($language)
+  const fullLanguage = language === "FIN" ? "finnish" : "english"
 
   const toggleDropdown = (visible: boolean) => {
     setDropdownVisible(visible);
@@ -24,7 +29,7 @@ const NavBar: React.FC<Props> = ({url}) => {
       <nav>
         <ol className='p-4 flex flex-wrap items-center'>
           <li>
-            <a href='/' className={`mr-4 ${linkStyling('/')}`}>
+            <a href={`/${fullLanguage}`} className={`mr-4 ${linkStyling('/')}`}>
               Home
             </a>
           </li>
@@ -44,7 +49,7 @@ const NavBar: React.FC<Props> = ({url}) => {
                   </a>
                 </li>
                 <li>
-                  <a href='/association' className={`mr-4 ${linkStyling('/association')}`}>
+                  <a href={`/association/${fullLanguage}`} className={`mr-4 ${linkStyling('/association')}`}>
                     Association
                   </a>
                 </li>

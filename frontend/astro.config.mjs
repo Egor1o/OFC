@@ -11,4 +11,10 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [ [remarkToc, { heading: 'toc', maxDepth: 3 } ] ],
   },
+  //defaults. / does not work
+  redirects: {
+    '/' : '/english',
+    '/events' : '/events/english',
+    '/association': '/association/english',
+  }
 });
