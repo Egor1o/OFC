@@ -3,7 +3,10 @@ import LanguageDropDown from './LanguageDropDown.tsx';
 import InstagramLink from './InstagramLink';
 import TelegramLink from './TelegramLink';
 
-const NavBar: React.FC = () => {
+type Props = {
+  url: string
+}
+const NavBar: React.FC<Props> = ({url}) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const toggleDropdown = (visible: boolean) => {
@@ -72,7 +75,7 @@ const NavBar: React.FC = () => {
             <TelegramLink />
           </li>
           <li>
-            <LanguageDropDown />
+            <LanguageDropDown url={url}/>
           </li>
         </ol>
       </nav>

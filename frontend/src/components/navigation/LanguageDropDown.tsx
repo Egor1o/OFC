@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { setLanguage, $language } from '../../stores/languageStore.ts';
 import { useStore } from '@nanostores/react';
 
-const LanguageDropDown: React.FC = () => {
+type Props = {
+  url: string
+}
+
+const LanguageDropDown: React.FC<Props> = ({url}) => {
   const languages: string[] = ['EN', 'FIN'];
   const language = useStore($language);
+  const languageFromUrl = url.split("/")[url.split("/").length - 1]
+  const abbreviate = languageFromUrl === "finnish" ? "FIN" : "EN"
+
+  const setCorrectLanguage = (url, languageAbbreviate) => {
+    const realLanguage = languageAbbreviate === "FIN" ? "finnish" : "english"
+    setLanguage(languageAbbreviate);
+    setTimeout( () => {
+      window.open(`${url.split(`/${languageFromUrl}`)[0]}/${realLanguage}` , '_self', 'noopener,noreferrer')
+    })
+  }
+
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLanguage(e.target.value);
+    setCorrectLanguage(url, e.target.value)
   };
+
+  useEffect(() => {
+    if(language !== abbreviate){
+      setCorrectLanguage(url, abbreviate)
+    }
+  }, []);
 
   return (
     <div className='flex items-center justify-center'>

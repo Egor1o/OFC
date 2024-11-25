@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { language } = Astro.params
+const url = Astro.url.href
 
 const associationPage = await fetchApi<AssociationPage>({
   endpoint: 'association-page',
@@ -43,7 +44,7 @@ const contactUs = getHTMLfromMDX(associationPage.contactUsText, {
 
 ---
 
-<Main>
+<Main url={url}>
   <div class="flex self-center flex-col w-3/4">
     {intro}
   </div>
