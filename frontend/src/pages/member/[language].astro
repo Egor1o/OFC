@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { language } = Astro.params
 const url = Astro.url.href
 
-const associationPage = await fetchApi<BecomeAMemberPage>({
+const memberPage = await fetchApi<BecomeAMemberPage>({
   endpoint: 'become-a-member-page',
   query: {
     locale: language === "english" ? "en" : "fi",
@@ -25,38 +25,22 @@ const associationPage = await fetchApi<BecomeAMemberPage>({
   wrappedByKey: 'data',
 });
 
-console.log(associationPage)
-const rulesText = getHTMLfromMDX(associationPage.rulesText, {h2: "font-bold text-2xl m-2"})
+const introContent = getHTMLfromMDX(memberPage.introText, {h1: "font-bold text-3xl m-2"})
+const rulesContent = getHTMLfromMDX(memberPage.rulesText, {h2: "font-bold text-2xl"})
+const acceptRules =  memberPage.acceptRulesCheckboxText
 ---
 
 <Main utl={url}>
   <div class="flex flex-col text-center p-10 text-white gap-10 w-3/4 justify-center self-center">
 
-    <div class="flex flex-col gap-10 mb-20">
-      <h1 class="text-xl">
-        Become a member!
-      </h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus congue, lorem ac convallis vulputate,
-        nibh arcu consequat nunc,
-        sit amet luctus tellus velit sit amet nulla. Morbi gravida mauris accumsan egestas rutrum.
-        Donec ac augue viverra, suscipit justo id, efficitur turpis. Donec risus erat, efficitur non commodo eget, consequat quis
-        est. Donec volutpat erat ut felis tincidunt posuere vulputate vel nisi.
-      </p>
+    <div class="flex flex-col gap-10 mb-16">
+      {introContent}
     </div>
 
-    <div class="flex flex-col gap-10 mb-20">
-      {rulesText}
+    <div class="flex flex-col gap-10 mb-10">
+      {rulesContent}
+      <Modal client:only='react' styles="pt-4 pb-4 pl-6 pr-6" text={acceptRules}/>
     </div>
 
-    <div class="flex flex-col gap-5 ">
-      <p>
-        By taking part of the training I confirm that I’ve read and understood the terms above, I accept them and
-        I consent to following them. I will also try my best in maintaining a safe and positive atmosphere and
-        treat the used facilities and material with respect and agree to report immediately if I perceive any
-        damage or see them being abused.
-      </p>
-    <Modal client:only='react' styles="pt-4 pb-4 pl-6 pr-6"/>
-    </div>
   </div>
 </Main>

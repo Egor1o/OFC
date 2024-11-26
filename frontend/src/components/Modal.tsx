@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import '../styles/PersonCard.css';
 import Button from './Button.tsx';
 import {X} from "lucide-react"
+import { useStore } from '@nanostores/react';
+import { $language } from '../stores/languageStore.ts';
 
 type Props = {
   onConfirm: () => void,
   styles? : string
+  text: string
 };
 
-const Modal: React.FC<Props> = ({onConfirm, styles}) => {
+const Modal: React.FC<Props> = ({onConfirm, styles, text}) => {
   const [opened, setOpened] = useState(false)
+  const language = useStore($language)
   const handleOpened = () => setOpened(value => !value)
 
   return opened ?
@@ -25,12 +29,11 @@ const Modal: React.FC<Props> = ({onConfirm, styles}) => {
       </div>
       <div className="flex flex-col items-center gap-10 pr-10 pl-10 mb-4">
         <h1 className="text-2xl font-bold">
-          Confirmation dialogue
+          {language === "FIN" ? 'Vahvistaminen' : 'Confirmation Dialogue'}
         </h1>
 
         <p>
-          I have carefully read all the terms and conditions provided by the OFC and agree to follow them fully,
-          ensuring that I comply with their guidelines and requirements.
+          {text}
         </p>
 
         <div className="flex flex-row justify-center gap-10 ">
@@ -38,11 +41,12 @@ const Modal: React.FC<Props> = ({onConfirm, styles}) => {
             const newWindow = window.open('https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs', '_blank', 'noopener,noreferrer')
             console.log('newWindow', newWindow)
             if (newWindow) newWindow.opener = null
-          }} label="Confirm" />
+            setOpened(value => !value)
+          }} label={language === "FIN" ? 'Hyväksyn' : 'Confirm'} />
         </div>
       </div>
     </div>
-  </div> : <div className="flex justify-center m-5"><Button handleClick={handleOpened} label="Become a member" styles={styles}/></div>
+  </div> : <div className="flex justify-center m-5"><Button handleClick={handleOpened} label={language === "FIN" ? 'Liity jäseneksi' : 'Become a member'} styles={styles}/></div>
 
 };
 
