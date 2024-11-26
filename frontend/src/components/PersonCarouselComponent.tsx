@@ -6,17 +6,17 @@ import PersonCard from './PersonCard.tsx';
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1800 },
-    items: 5,
+    items: 3,
     slidesToSlide: 1 // optional, default to 1.
   },
   tablet: {
     breakpoint: { max: 1799, min: 1200 },
-    items: 3,
+    items: 2,
     slidesToSlide: 1 // optional, default to 1.
   },
   mobile: {
     breakpoint: { max: 1199, min: 464 },
-    items: 2,
+    items: 1,
     slidesToSlide: 1 // optional, default to 1.
   }
 };
@@ -68,7 +68,6 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
 
   return (
     <div className='parent bg-red bg-opacity-75' ref={carouselRef}>
-      <p>Carousel width: {carouselWidth}px</p> {/* Display the carousel width */}
       <Carousel
         responsive={responsive}
         swipeable={true}
@@ -77,13 +76,15 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
         infinite={true}
         partialVisible={false}
         dotListClass='custom-dot-list-style'
+        autoPlay={true}
         afterChange={(_previousSlide, { currentSlide }) => {
           //does not work properly
+
           setCurrentFocus(currentSlide - personSlides.length);
         }}
       >
         {personSlides.map((slide, index) => (
-          <div className='mb-10 mt-10' key={index}>
+          <div className='mb-10 mt-10 flex justify-center' key={index}>
             <PersonCard
               name={slide.name}
               focused={currentFocus === index}
