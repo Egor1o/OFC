@@ -16,5 +16,6 @@ export default defineConfig({
     '/' : '/english',
     '/events' : '/events/english',
     '/association': '/association/english',
+    '/member' : '/member/english'
   }
 });

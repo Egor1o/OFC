@@ -68,7 +68,7 @@ const NavBar: React.FC<Props> = ({url}) => {
             </a>
           </li>
           <li>
-            <a href='/member' className={`mr-4 ${linkStyling('/member')}`}>
+            <a href={`/member/${fullLanguage}`} className={`mr-4 ${linkStyling('/member')}`}>
               Become a member!
             </a>
           </li>
