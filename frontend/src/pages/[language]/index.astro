@@ -37,10 +37,18 @@ const memberComments =
     wrappedByKey: 'data'
   })) ?? [];
 
+// @ts-ignore
 const mediaSlides = homePage.carouselMedias.map(media => ({
   type: media.mime,
   altText: media.alternativeText,
   mediaUrl: media.url ?? media.formats.large.url
+}));
+
+const memberSlides = memberComments.map(member => ({
+  name: String(member.name),
+  description: String(member.comment),
+  // @ts-ignore
+  image: String(member.profilePhoto.formats.small.url)
 }));
 ---
 
@@ -49,6 +57,6 @@ const mediaSlides = homePage.carouselMedias.map(media => ({
   <MediaCarousel client:only='react' medias={mediaSlides} />
   <hr />
   <h1 class='font-bold text-2xl'>Comments from our members</h1>
-  <PersonCarouselComponent client:only='react' personSlides={memberComments} />
+  <PersonCarouselComponent client:only='react' personSlides={memberSlides} />
   <hr />
 </Main>

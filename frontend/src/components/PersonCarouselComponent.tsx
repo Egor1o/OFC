@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import PersonCard from './PersonCard.tsx';
-import type { MemberComment } from 'src/types/types.ts';
 
 const responsive = {
   desktop: {
@@ -33,7 +32,11 @@ const getResponsivenessGroup = (size: number) => {
 };
 
 type Props = {
-  personSlides: MemberComment[];
+  personSlides: {
+    name: string;
+    description: string;
+    image: string;
+  }[];
 };
 
 const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
@@ -83,10 +86,11 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
         {personSlides.map((slide, index) => (
           <div className='mb-10 mt-10 flex self-center min-[450px]:justify-center' key={index}>
             <PersonCard
-              name={String(slide.name)}
+              name={slide.name}
               focused={currentFocus === index}
-              description={String(slide.comment)}
-              image={String(slide.profilePhoto.formats.small.url)}
+              description={slide.description}
+              // @ts-ignore
+              image={slide.image}
             />
           </div>
         ))}

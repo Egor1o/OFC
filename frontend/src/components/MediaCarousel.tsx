@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -38,10 +38,10 @@ interface Media {
 [];
 
 const MediaCarousel = ({ medias }: { medias: Media[] }) => {
-  const [carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
+  const [_carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
   const carouselRef = useRef<HTMLDivElement>(null); // Ref for the carousel container
   const [_currentSlide, _setCurrentSlide] = useState<number>();
-  const [currentFocus, setCurrentFocus] = useState<number>();
+  const [_currentFocus, setCurrentFocus] = useState<number>();
   const [carouselShift, setCarouselShift] = useState(0);
 
   useEffect(() => {

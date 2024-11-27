@@ -1,5 +1,5 @@
 const STRAPI_URL = 'https://informed-idea-cad3b2a8dd.strapiapp.com';
-const STRAPI_URL_LOCAL = 'http://localhost:1337/admin';
+// const STRAPI_URL_LOCAL = 'http://localhost:1337/admin';
 
 interface Props {
   endpoint: string;
