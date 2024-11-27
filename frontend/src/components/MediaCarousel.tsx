@@ -2,12 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const mediaSlides = Array.from({ length: 5 }, (_, index) => ({
-  type: index % 2 ? 'image' : 'video',
-  altText: 'The alt text for media',
-  mediaUrl: index % 2 ? '/public/8240494.jpg' : '/public/video.mp4'
-}));
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1800 },
@@ -36,7 +30,14 @@ const getResponsivenessGroup = (size: number) => {
   }
 };
 
-const MediaCarousel = () => {
+interface Media {
+  type: string;
+  altText: string;
+  mediaUrl: string;
+}
+[];
+
+const MediaCarousel = ({ medias }: { medias: Media[] }) => {
   const [carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
   const carouselRef = useRef<HTMLDivElement>(null); // Ref for the carousel container
   const [_currentSlide, _setCurrentSlide] = useState<number>();
@@ -76,15 +77,15 @@ const MediaCarousel = () => {
         dotListClass='custom-dot-list-style'
         afterChange={(_previousSlide, { currentSlide }) => {
           //does not work properly
-          setCurrentFocus(currentSlide - mediaSlides.length);
+          setCurrentFocus(currentSlide - medias.length);
         }}
       >
-        {mediaSlides.map((slide, index) => (
+        {medias.map((slide, index) => (
           <div className='mb-10 mt-10 flex justify-center items-center' key={index}>
-            {slide.type === 'image' ? (
+            {slide.type.startsWith('image/') ? (
               <img src={slide.mediaUrl} alt={slide.altText} className='h-[500px]' />
             ) : (
-              <video height='500' muted autoPlay>
+              <video height='500' muted autoPlay loop>
                 <source src={slide.mediaUrl} type='video/mp4' />
               </video>
             )}

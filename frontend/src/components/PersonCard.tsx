@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import '../styles/PersonCard.css';
+import MarkdownArticle from './MarkdownArticle';
 
 type Props = {
   name: string;

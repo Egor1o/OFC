@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import PersonCard from './PersonCard.tsx';
+import type { MemberComment } from 'src/types/types.ts';
 
 const responsive = {
   desktop: {
@@ -32,15 +33,11 @@ const getResponsivenessGroup = (size: number) => {
 };
 
 type Props = {
-  personSlides: {
-    name: string;
-    description: string;
-    image: string;
-  }[];
+  personSlides: MemberComment[];
 };
 
 const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
-  const [carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
+  const [_carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
   const carouselRef = useRef<HTMLDivElement>(null); // Ref for the carousel container
   const [_currentSlide, _setCurrentSlide] = useState<number>();
   const [currentFocus, setCurrentFocus] = useState<number>();
@@ -81,14 +78,15 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
 
           setCurrentFocus(currentSlide - personSlides.length);
         }}
+        autoPlaySpeed={7000}
       >
         {personSlides.map((slide, index) => (
           <div className='mb-10 mt-10 flex self-center min-[450px]:justify-center' key={index}>
             <PersonCard
-              name={slide.name}
+              name={String(slide.name)}
               focused={currentFocus === index}
-              description={slide.description}
-              image={slide.image}
+              description={String(slide.comment)}
+              image={String(slide.profilePhoto.formats.small.url)}
             />
           </div>
         ))}
