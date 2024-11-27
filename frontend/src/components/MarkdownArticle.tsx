@@ -13,12 +13,10 @@ const MarkdownArticle = ({ markdown, styles }: { markdown: string; styles?: Obje
   }, [markdown, styles]);
 
   return (
-    <div>
-      <article
-        className='flex flex-col items-center justify-center text-center'
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      ></article>
-    </div>
+    <article
+      className='m-0 flex flex-col items-center justify-center text-center'
+      dangerouslySetInnerHTML={{ __html: htmlContent }}
+    ></article>
   );
 };
 

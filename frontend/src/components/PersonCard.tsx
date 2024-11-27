@@ -20,7 +20,9 @@ const PersonCard: React.FC<Props> = props => {
         <img src={props.image} alt={props.name} className='object-cover h-full' />
       </div>
       <h1 className='mt-4 m-2 text-sm md:text-md'>{props.name}</h1>
-      <p className='m-0.5 text-sm md:text-md'>{props.description}</p>
+      {props.description && (
+        <MarkdownArticle markdown={props.description} styles={{ p: 'm-0.5 text-sm md:text-md text-black' }} />
+      )}
     </div>
   );
 };
