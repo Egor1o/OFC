@@ -766,6 +766,12 @@ export interface ApiTrainingsPageTrainingsPage extends Struct.SingleTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    trainingsImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     trainingsText: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

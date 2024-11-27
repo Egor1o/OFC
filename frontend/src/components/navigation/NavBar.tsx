@@ -42,7 +42,7 @@ const NavBar: React.FC<Props> = ({ url }) => {
           >
             <span>About</span>
             {dropdownVisible && (
-              <ul className='absolute top-full bg-white shadow-md'>
+              <ul className='absolute top-full bg-white shadow-md p-4 border-2 rounded-md'>
                 <li>
                   <a href={`/trainings/${fullLanguage}`} className={`mr-4 ${linkStyling('/trainings')}`}>
                     Trainings
