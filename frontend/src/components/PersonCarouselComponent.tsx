@@ -40,7 +40,7 @@ type Props = {
 };
 
 const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
-  const [carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
+  const [_carouselWidth, setCarouselWidth] = useState<number>(0); // Store the width of the carousel
   const carouselRef = useRef<HTMLDivElement>(null); // Ref for the carousel container
   const [_currentSlide, _setCurrentSlide] = useState<number>();
   const [currentFocus, setCurrentFocus] = useState<number>();
@@ -81,6 +81,7 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
 
           setCurrentFocus(currentSlide - personSlides.length);
         }}
+        autoPlaySpeed={7000}
       >
         {personSlides.map((slide, index) => (
           <div className='mb-10 mt-10 flex self-center min-[450px]:justify-center' key={index}>
@@ -88,6 +89,7 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
               name={slide.name}
               focused={currentFocus === index}
               description={slide.description}
+              // @ts-ignore
               image={slide.image}
             />
           </div>

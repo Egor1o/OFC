@@ -6,13 +6,13 @@ import { useStore } from '@nanostores/react';
 import { $language } from '../../stores/languageStore.ts';
 
 type Props = {
-  url: string
-}
-const NavBar: React.FC<Props> = ({url}) => {
+  url: string;
+};
+const NavBar: React.FC<Props> = ({ url }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const language = useStore($language)
-  const fullLanguage = language === "FIN" ? "finnish" : "english"
+  const language = useStore($language);
+  const fullLanguage = language === 'FIN' ? 'finnish' : 'english';
 
   const toggleDropdown = (visible: boolean) => {
     setDropdownVisible(visible);
@@ -42,9 +42,9 @@ const NavBar: React.FC<Props> = ({url}) => {
           >
             <span>About</span>
             {dropdownVisible && (
-              <ul className='absolute top-full bg-white shadow-md'>
+              <ul className='absolute top-full bg-white shadow-md p-4 border-2 rounded-md'>
                 <li>
-                  <a href='/trainings' className={`mr-4 ${linkStyling('/trainings')}`}>
+                  <a href={`/trainings/${fullLanguage}`} className={`mr-4 ${linkStyling('/trainings')}`}>
                     Trainings
                   </a>
                 </li>
@@ -54,18 +54,12 @@ const NavBar: React.FC<Props> = ({url}) => {
                   </a>
                 </li>
                 <li>
-                  <a href='/faq' className={`mr-4 ${linkStyling('/faq')}`}>
+                  <a href={`/faq/${fullLanguage}`} className={`mr-4 ${linkStyling('/faq')}`}>
                     FAQ
                   </a>
                 </li>
               </ul>
             )}
-          </li>
-          <li>
-            {' '}
-            <a href='/events' className={`mr-4 ${linkStyling('/events')}`}>
-              Events
-            </a>
           </li>
           <li>
             <a href={`/member/${fullLanguage}`} className={`mr-4 ${linkStyling('/member')}`}>
@@ -80,7 +74,7 @@ const NavBar: React.FC<Props> = ({url}) => {
             <TelegramLink />
           </li>
           <li>
-            <LanguageDropDown url={url}/>
+            <LanguageDropDown url={url} />
           </li>
         </ol>
       </nav>

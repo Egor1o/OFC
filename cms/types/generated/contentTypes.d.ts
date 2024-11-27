@@ -539,7 +539,8 @@ export interface ApiCoachCoach extends Struct.CollectionTypeSchema {
 export interface ApiContactInformationContactInformation extends Struct.CollectionTypeSchema {
   collectionName: 'contact_informations';
   info: {
-    displayName: 'ContactInformation';
+    description: '';
+    displayName: 'Contact Information';
     pluralName: 'contact-informations';
     singularName: 'contact-information';
   };
@@ -628,6 +629,12 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home-page.home-page'>;
     member_comments: Schema.Attribute.Relation<'oneToMany', 'api::member-comment.member-comment'>;
+    memberCommentsTitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> & Schema.Attribute.Private;
@@ -759,6 +766,12 @@ export interface ApiTrainingsPageTrainingsPage extends Struct.SingleTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    trainingsImage: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     trainingsText: Schema.Attribute.RichText &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

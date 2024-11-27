@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contact-information",
     "pluralName": "contact-informations",
-    "displayName": "ContactInformation"
+    "displayName": "Contact Information",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

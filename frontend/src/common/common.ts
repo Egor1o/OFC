@@ -3,6 +3,7 @@ import remarkParse from 'remark-parse';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
+// @ts-ignore
 import rehypeAddClasses from 'rehype-add-classes';
 import rehypeStringify from 'rehype-stringify';
 
@@ -15,9 +16,7 @@ const getHTMLfromMDX = async (mdx: string, styles: Object) => {
     .use(remarkRehype)
     .use(rehypeAddClasses, styles)
     .use(rehypeStringify)
-    .process(mdx)
-}
+    .process(mdx);
+};
 
-export {
-  getHTMLfromMDX
-}
+export { getHTMLfromMDX };

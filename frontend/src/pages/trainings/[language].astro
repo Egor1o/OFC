@@ -1,0 +1,110 @@
+---
+import Main from '../../layouts/Main.astro';
+import PersonCarouselComponent from '../../components/PersonCarouselComponent';
+import fetchApi from '../../lib/strapi';
+import type { Coach, TrainingsPage, MartialArtInformation } from 'src/types/types';
+import { getHTMLfromMDX } from 'src/common/common';
+
+export async function getStaticPaths() {
+  return [{ params: { language: 'finnish' } }, { params: { language: 'english' } }];
+}
+
+const { language } = Astro.params;
+
+const trainingsPage = await fetchApi<TrainingsPage>({
+  endpoint: 'trainings-page',
+  query: {
+    locale: language === 'english' ? 'en' : 'fi',
+    populate: '*'
+  },
+  wrappedByKey: 'data'
+});
+
+const trainingsInfo = getHTMLfromMDX(String(trainingsPage.trainingsText), {
+  h2: 'text-4xl p-10',
+  h3: 'text-2xl'
+});
+
+// @ts-ignore
+const trainingsImage = trainingsPage.trainingsImage.formats.medium.url;
+
+const coachesInfo = getHTMLfromMDX(String(trainingsPage.coachesText), {
+  h2: 'text-4xl p-10',
+  h3: 'text-2xl'
+});
+
+const martialArtsInfo = getHTMLfromMDX(String(trainingsPage.martialArtsText), {
+  h2: 'text-4xl p-10',
+  h3: 'text-2xl'
+});
+
+const coaches =
+  (await fetchApi<Coach[]>({
+    endpoint: 'coaches',
+    query: {
+      locale: language === 'english' ? 'en' : 'fi',
+      populate: '*'
+    },
+    wrappedByKey: 'data'
+  })) ?? [];
+
+const coachSlides = coaches.map(coach => ({
+  name: String(coach.name),
+  description: String(coach.description),
+  // @ts-ignore
+  image: String(coach.profilePhoto.formats.small.url)
+}));
+
+const martialArts =
+  (await fetchApi<MartialArtInformation[]>({
+    endpoint: 'martial-art-informations',
+    query: {
+      locale: language === 'english' ? 'en' : 'fi',
+      populate: '*'
+    },
+    wrappedByKey: 'data'
+  })) ?? [];
+
+const martialArtCards = martialArts.map(martialArt => ({
+  title: martialArt.martialArtName,
+  description: getHTMLfromMDX(String(martialArt.description), {}),
+  // @ts-ignore
+  image: martialArt.photo.url
+}));
+---
+
+<Main>
+  <div class='flex flex-col md:flex-row p-5'>
+    <div class='text-center gap-4 flex-col flex'>
+      {trainingsInfo}
+    </div>
+    <div>
+      <img class='p-10' src={trainingsImage} />
+    </div>
+  </div>
+  <div class='h-2 bg-[#E9DEDE]'></div>
+
+  <div class='text-center'>
+    {coachesInfo}
+  </div>
+  <PersonCarouselComponent client:only='react' personSlides={coachSlides} />
+  <div class='h-2 bg-[#E9DEDE]'></div>
+  <div class='text-center'>
+    {martialArtsInfo}
+  </div>
+  <div class='flex flex-wrap'>
+    {
+      martialArtCards.map(martialArt => (
+        <div class='card border-l-4 border-b-4 border-[#E9DEDE] bg-gradient-to-r from-red to-[#E9DEDE] m-10 h-96 shadow-xl flex flex-col md:flex-row justify-center items-center w-[778px]'>
+          <figure class='pt-5 md:p-5'>
+            <img src={martialArt.image} class='rounded-xl max-w-44 md:max-w-96' />
+          </figure>
+          <div class='max-w-80 md:max-w-[306px] text-black pl-2'>
+            <h2 class='text-3xl pb-2'>{martialArt.title}</h2>
+            {martialArt.description}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Main>
