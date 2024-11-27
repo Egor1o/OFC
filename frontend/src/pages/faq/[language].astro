@@ -1,0 +1,32 @@
+---
+import Main from '../../layouts/Main.astro';
+import { getHTMLfromMDX } from 'src/common/common';
+import fetchApi from '../../lib/strapi';
+import type { FrequentlyAskedQuestionsPage } from 'src/types/types';
+
+export async function getStaticPaths() {
+  return [{ params: { language: 'finnish' } }, { params: { language: 'english' } }];
+}
+
+const { language } = Astro.params;
+
+const faqPage = await fetchApi<FrequentlyAskedQuestionsPage>({
+  endpoint: 'frequently-asked-questions-page',
+  wrappedByKey: 'data',
+  query: {
+    locale: language === 'english' ? 'en' : 'fi'
+  }
+});
+
+const faq = getHTMLfromMDX(String(faqPage.faqText), {
+  h1: 'text-4xl p-5',
+  h2: 'text-2xl pt-6',
+  p: 'p-8'
+});
+---
+
+<Main>
+  <div class='gap-0'>
+    {faq}
+  </div>
+</Main>

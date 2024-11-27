@@ -44,7 +44,7 @@ const NavBar: React.FC<Props> = ({ url }) => {
             {dropdownVisible && (
               <ul className='absolute top-full bg-white shadow-md'>
                 <li>
-                  <a href='/trainings' className={`mr-4 ${linkStyling('/trainings')}`}>
+                  <a href={`/trainings/${fullLanguage}`} className={`mr-4 ${linkStyling('/trainings')}`}>
                     Trainings
                   </a>
                 </li>
@@ -54,7 +54,7 @@ const NavBar: React.FC<Props> = ({ url }) => {
                   </a>
                 </li>
                 <li>
-                  <a href='/faq' className={`mr-4 ${linkStyling('/faq')}`}>
+                  <a href={`/faq/${fullLanguage}`} className={`mr-4 ${linkStyling('/faq')}`}>
                     FAQ
                   </a>
                 </li>
