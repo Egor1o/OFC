@@ -10,12 +10,12 @@ const responsive = {
     slidesToSlide: 1 // optional, default to 1.
   },
   tablet: {
-    breakpoint: { max: 1799, min: 1200 },
+    breakpoint: { max: 1799, min: 700 },
     items: 2,
     slidesToSlide: 1 // optional, default to 1.
   },
   mobile: {
-    breakpoint: { max: 1199, min: 464 },
+    breakpoint: { max: 700, min: 464 },
     items: 1,
     slidesToSlide: 1 // optional, default to 1.
   }
@@ -74,9 +74,8 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
         draggable={true}
         showDots={true}
         infinite={true}
-        partialVisible={false}
         dotListClass='custom-dot-list-style'
-        autoPlay={true}
+        //className="max-[400px]:justify-center"
         afterChange={(_previousSlide, { currentSlide }) => {
           //does not work properly
 
@@ -84,7 +83,7 @@ const CarouselComponent: React.FC<Props> = ({ personSlides }) => {
         }}
       >
         {personSlides.map((slide, index) => (
-          <div className='mb-10 mt-10 flex justify-center' key={index}>
+          <div className='mb-10 mt-10 flex self-center min-[450px]:justify-center' key={index}>
             <PersonCard
               name={slide.name}
               focused={currentFocus === index}
