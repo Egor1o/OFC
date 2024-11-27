@@ -20,7 +20,7 @@ const NavBar: React.FC = () => {
 
   return (
     <div className='bg-white flex flex-row justify-between items-center mb-5 pt-2 pb-2 text-lg text-black'>
-      <a href='/'>
+      <a href={`/${fullLanguage}`}>
         <img className='scale-75' src='/ofcLogo.jpg' alt='ofc_logo' />
       </a>
       <nav>
