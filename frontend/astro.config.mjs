@@ -9,13 +9,14 @@ export default defineConfig({
   },
   integrations: [react(), tailwind()],
   markdown: {
-    remarkPlugins: [ [remarkToc, { heading: 'toc', maxDepth: 3 } ] ],
+    remarkPlugins: [[remarkToc, { heading: 'toc', maxDepth: 3 }]]
   },
   //defaults. / does not work
   redirects: {
-    '/' : '/english',
-    '/events' : '/events/english',
+    '/': '/english',
     '/association': '/association/english',
-    '/member' : '/member/english'
+    '/member': '/member/english',
+    '/faq': '/faq/english',
+    '/trainings': '/trainings/english'
   }
 });

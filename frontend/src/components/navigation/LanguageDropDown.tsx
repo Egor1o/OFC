@@ -1,35 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { setLanguage, $language } from '../../stores/languageStore.ts';
 import { useStore } from '@nanostores/react';
 
-type Props = {
-  url: string;
-};
-
-const LanguageDropDown: React.FC<Props> = ({ url }) => {
+const LanguageDropDown: React.FC = () => {
+  const url = window.location.href;
   const languages: string[] = ['EN', 'FIN'];
   const language = useStore($language);
-  const languageFromUrl = url.split('/')[url.split('/').length - 1];
-  const abbreviate = languageFromUrl === 'finnish' ? 'FIN' : 'EN';
+  //   const languageFromUrl = url.split('/')[url.split('/').length - 1];
+  //   const abbreviate = languageFromUrl === 'finnish' ? 'FIN' : 'EN';
 
   const setCorrectLanguage = (url: string, languageAbbreviate: string) => {
     const realLanguage = languageAbbreviate === 'FIN' ? 'finnish' : 'english';
     setLanguage(languageAbbreviate);
-    setTimeout(() => {
-      window.open(`${url.split(`/${languageFromUrl}`)[0]}/${realLanguage}`, '_self', 'noopener,noreferrer');
-    });
+
+    const newUrl = new URL(url);
+    const pathSegments = newUrl.pathname.split('/').filter(Boolean);
+    pathSegments[pathSegments.length - 1] = realLanguage; // New language
+    newUrl.pathname = pathSegments.join('/');
+
+    window.open(newUrl, '_self', 'noopener,noreferrer');
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCorrectLanguage(url, e.target.value);
   };
 
-  useEffect(() => {
-    if (language !== abbreviate) {
-      //comment this if starts bother
-      setCorrectLanguage(url, abbreviate);
-    }
-  }, []);
+  //   useEffect(() => {
+  //     if (language !== abbreviate) {
+  //       //comment this if starts bother
+  //       setCorrectLanguage(url, abbreviate);
+  //     }
+  //   }, []);
 
   return (
     <div className='flex items-center justify-center'>

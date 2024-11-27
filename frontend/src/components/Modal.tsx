@@ -33,7 +33,7 @@ const Modal: React.FC<Props> = ({ styles, text }) => {
             <Button
               handleClick={() => {
                 const newWindow = window.open('https://forms.gle/WHLvnzsPTUC8t1iDA', '_blank', 'noopener,noreferrer');
-                console.log('newWindow', newWindow);
+                // console.log('newWindow', newWindow);
                 if (newWindow) newWindow.opener = null;
                 setOpened(value => !value);
               }}

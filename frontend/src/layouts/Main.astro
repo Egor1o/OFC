@@ -1,30 +1,29 @@
 ---
 import Footer from 'src/components/navigation/Footer.tsx';
 import NavBar from 'src/components/navigation/NavBar';
-const url = Astro.url.href
 ---
 
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='icon' type='image/jpg' href='/ofcLogo.jpg' />
     <link rel='stylesheet' href='https://rsms.me/inter/inter.css' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <meta name='generator' content={Astro.generator} />
-    <title>About</title>
+    <title>OFC</title>
   </head>
   <body
     style='min-height: 100vh; display: flex; flex-direction: column; flex: 1; background-color: #262525; color:white;'
   >
-    <NavBar client:only='react' url={url}/>
+    <NavBar client:only='react' />
     <main
-      style="
+      style='
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 50px;
         text-align: center;
-      "
+      '
     >
       <slot />
     </main>

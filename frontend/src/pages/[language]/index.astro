@@ -7,6 +7,8 @@ import { getHTMLfromMDX } from 'src/common/common';
 export async function getStaticPaths() {
   return [{ params: { language: 'finnish' } }, { params: { language: 'english' } }];
 }
+
+export const prerender = true;
 const url = Astro.url.href;
 const { language } = Astro.params;
 

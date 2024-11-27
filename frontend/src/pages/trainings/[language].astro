@@ -9,6 +9,8 @@ export async function getStaticPaths() {
   return [{ params: { language: 'finnish' } }, { params: { language: 'english' } }];
 }
 
+export const prerender = true;
+
 const { language } = Astro.params;
 
 const trainingsPage = await fetchApi<TrainingsPage>({

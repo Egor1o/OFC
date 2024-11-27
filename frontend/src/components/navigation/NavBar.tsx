@@ -5,10 +5,7 @@ import TelegramLink from './TelegramLink';
 import { useStore } from '@nanostores/react';
 import { $language } from '../../stores/languageStore.ts';
 
-type Props = {
-  url: string;
-};
-const NavBar: React.FC<Props> = ({ url }) => {
+const NavBar: React.FC = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const language = useStore($language);
@@ -30,7 +27,7 @@ const NavBar: React.FC<Props> = ({ url }) => {
         <ol className='p-4 flex flex-wrap items-center'>
           <li>
             <a href={`/${fullLanguage}`} className={`mr-4 ${linkStyling('/')}`}>
-              Home
+              {language === 'FIN' ? 'Etusivu' : 'Home'}
             </a>
           </li>
 
@@ -40,30 +37,36 @@ const NavBar: React.FC<Props> = ({ url }) => {
             onClick={() => toggleDropdown(true)}
             className='relative mr-4 list-none'
           >
-            <span>About</span>
+            <span>{language === 'FIN' ? 'Meistä' : 'About'}</span>
             {dropdownVisible && (
               <ul className='absolute top-full bg-white shadow-md p-4 border-2 rounded-md'>
                 <li>
-                  <a href={`/trainings/${fullLanguage}`} className={`mr-4 ${linkStyling('/trainings')}`}>
-                    Trainings
+                  <a
+                    href={`/trainings/${fullLanguage}`}
+                    className={`mr-4 ${linkStyling(`/trainings/${fullLanguage}`)}`}
+                  >
+                    {language === 'FIN' ? 'Harjoitukset' : 'Trainings'}
                   </a>
                 </li>
                 <li>
-                  <a href={`/association/${fullLanguage}`} className={`mr-4 ${linkStyling('/association')}`}>
-                    Association
+                  <a
+                    href={`/association/${fullLanguage}`}
+                    className={`mr-4 ${linkStyling(`/association/${fullLanguage}`)}`}
+                  >
+                    {language === 'FIN' ? 'Assosiaatio' : 'Association'}
                   </a>
                 </li>
                 <li>
-                  <a href={`/faq/${fullLanguage}`} className={`mr-4 ${linkStyling('/faq')}`}>
-                    FAQ
+                  <a href={`/faq/${fullLanguage}`} className={`mr-4 ${linkStyling(`/faq/${fullLanguage}`)}`}>
+                    {language === 'FIN' ? 'UKK' : 'FAQ'}
                   </a>
                 </li>
               </ul>
             )}
           </li>
           <li>
-            <a href={`/member/${fullLanguage}`} className={`mr-4 ${linkStyling('/member')}`}>
-              Become a member!
+            <a href={`/member/${fullLanguage}`} className={`mr-4 ${linkStyling(`/member/${fullLanguage}`)}`}>
+              {language === 'FIN' ? 'Liity jäseneksi!' : 'Become a member!'}
             </a>
           </li>
 
@@ -74,7 +77,7 @@ const NavBar: React.FC<Props> = ({ url }) => {
             <TelegramLink />
           </li>
           <li>
-            <LanguageDropDown url={url} />
+            <LanguageDropDown />
           </li>
         </ol>
       </nav>

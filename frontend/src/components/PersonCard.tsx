@@ -12,7 +12,7 @@ type Props = {
 
 const PersonCard: React.FC<Props> = props => {
   useEffect(() => {
-    console.log(props.name, props.focused);
+    // console.log(props.name, props.focused);
   }, []);
   return (
     <div className='flex flex-col text-gray-700 bg-white items-center max-w-[300px] md:min-w-[300px] min-[450px]:max-w-[450px] text-center p-8 ml-10 min-[450px]:mr-10 rounded-xl transition duration-450 hover:shadow-2xl'>
