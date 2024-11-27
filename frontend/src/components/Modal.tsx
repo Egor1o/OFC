@@ -38,7 +38,7 @@ const Modal: React.FC<Props> = ({onConfirm, styles, text}) => {
 
         <div className="flex flex-row justify-center gap-10 ">
           <Button handleClick={() => {
-            const newWindow = window.open('https://stackoverflow.com/questions/67399620/how-to-make-open-url-on-click-on-button-in-reactjs', '_blank', 'noopener,noreferrer')
+            const newWindow = window.open('https://forms.gle/WHLvnzsPTUC8t1iDA', '_blank', 'noopener,noreferrer')
             console.log('newWindow', newWindow)
             if (newWindow) newWindow.opener = null
             setOpened(value => !value)
