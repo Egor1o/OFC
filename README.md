@@ -1,8 +1,14 @@
 # Otaniemi Fight Club landing page
 
+## Production environments
+
+The website is available at <a href="https://classy-fairy-d41d66.netlify.app/english/" target="_blank">https://classy-fairy-d41d66.netlify.app/english/</a>
+
+The Strapi CMS admin panel is available at <a href="https://informed-idea-cad3b2a8dd.strapiapp.com/admin " target="_blank">https://informed-idea-cad3b2a8dd.strapiapp.com/admin</a>
+
 ## Running the app in Docker
 
-Create the required `.env` files at the root of the project, in the `strapi`folder and in the `frontend` folder.
+Create the required `.env` files at the root of the project, in the `cms`folder and in the `frontend` folder.
 
 Make sure you have Docker Compose installed and run
 
@@ -12,15 +18,17 @@ docker-compose up
 
 The frontend client is available at <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a>
 
-Log into the Strapi admin panel at <a href="http://localhost:1337/admin" target="_blank">http://localhost:1337/admin</a>
-
 ## Local Strapi development
 
-When creating new Collection or Single types or specifying Strapi settings, first run the Postgres (e.g. with `docker-compose up`)
+By default the frontend connects to the Strapi running live at [https://informed-idea-cad3b2a8dd.strapiapp.com](https://informed-idea-cad3b2a8dd.strapiapp.com)
 
-And then stop the possibly running Strapi container running in port 1337.
+If you wish to run Strapi locally, e.g. for testing content type changes, run `npm install` in the `cms` folder and then `npm run strapi develop`
 
-Instead run `npm run strapi develop` inside `strapi` folder. This ensures that new Collection and Single type schema files are saved within the repository.
+Then you can log into the Strapi admin panel at <a href="http://localhost:1337/admin" target="_blank">http://localhost:1337/admin</a>
+
+Finally, connect the frontend temporarily to the local Strapi endpoint by setting the `STRAPI_URL` value in `frontend/src/lib/strapi.ts` to `http://localhost:1337`
+
+See Strapi admin panel use instructions at `assets/Strapi Instructions.pdf`
 
 > **Warning**
 > COLLECTION AND SINGLE TYPE ENTRIES (e.g. any collection members created in Strapi) ARE STORED ONLY LOCALLY!
