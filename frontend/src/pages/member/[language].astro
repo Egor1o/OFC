@@ -23,7 +23,13 @@ const memberPage = await fetchApi<BecomeAMemberPage>({
 });
 
 const introContent = getHTMLfromMDX(String(memberPage.introText), { h1: 'font-bold text-3xl m-2' });
-const rulesContent = getHTMLfromMDX(String(memberPage.rulesText), { h2: 'font-bold text-2xl' });
+const rulesContent = getHTMLfromMDX(String(memberPage.rulesText), {
+  h2: 'font-bold text-2xl',
+  table: 'border-collapse border border-white',
+  th: 'border border-white p-2',
+  td: 'border border-white p-2',
+  tr: 'border border-white'
+});
 const acceptRules = memberPage.acceptRulesCheckboxText;
 ---
 

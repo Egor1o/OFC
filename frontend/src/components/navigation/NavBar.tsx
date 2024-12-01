@@ -59,7 +59,7 @@ const NavBar: React.FC = () => {
                     href={`/association/${fullLanguage}`}
                     className={`mr-4 ${linkStyling(`/association/${fullLanguage}`)}`}
                   >
-                    {language === 'FIN' ? 'Assosiaatio' : 'Association'}
+                    {language === 'FIN' ? 'Yhdistys' : 'Association'}
                   </a>
                 </li>
                 <li>
@@ -114,7 +114,7 @@ const NavBar: React.FC = () => {
             </li>
             <li>
               <a href='/association' className={`block px-4 py-2 ${linkStyling(`/association/${fullLanguage}`)}`}>
-              {language === 'FIN' ? 'Assosiaatio' : 'Association'}
+              {language === 'FIN' ? 'Yhdistys' : 'Association'}
               </a>
             </li>
             <li>
